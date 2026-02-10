@@ -1,0 +1,49 @@
+<?php
+
+/** @var $block ResetButton */
+
+use HK2\CspWhitelisting\Block\Adminhtml\System\Config\ResetButton;
+
+?>
+
+<?= $block->getButtonHtml(); ?>
+
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/confirm'
+    ], function ($, confirm) {
+
+        $('#cspwhitelisting_reset_button').on('click', function () {
+            confirm({
+                title: 'Reset CSP',
+                content: 'This will clear all CSP fields and restore defaults. Continue?',
+                actions: {
+                    confirm: function () {
+
+                        // Clear textareas instantly (UI only)
+                        clearCspFields();
+
+                        // Call backend reset
+                        window.location.href = '<?= $escaper->escapeUrl($block->getResetUrl()) ?>';
+                    }
+                }
+            });
+        });
+
+        function clearCspFields() {
+            const fields = [
+                'script_src',
+                'style_src',
+                'img_src',
+                'connect_src',
+                'font_src',
+                'frame_src'
+            ];
+
+            fields.forEach(function (field) {
+                $('[data-ui-id$="' + field + '"]').val('');
+            });
+        }
+    });
+</script>

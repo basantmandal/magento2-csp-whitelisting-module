@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<csp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp.xsd">
+
+    <policies>
+
+        <policy id="script-src">
+            <self />
+            <inline />
+            <nonce />
+        </policy>
+
+        <policy id="style-src">
+            <self />
+            <inline />
+        </policy>
+
+        <policy id="img-src">
+            <self />
+            <scheme>data:</scheme>
+            <scheme>blob:</scheme>
+        </policy>
+
+        <policy id="connect-src">
+            <self />
+            <scheme>wss:</scheme>
+        </policy>
+
+        <policy id="font-src">
+            <self />
+            <scheme>data:</scheme>
+        </policy>
+
+        <policy id="media-src">
+            <self />
+            <scheme>data:</scheme>
+            <scheme>blob:</scheme>
+        </policy>
+
+        <policy id="object-src">
+            <self />
+        </policy>
+
+        <policy id="base-uri">
+            <self />
+        </policy>
+
+        <policy id="child-src">
+            <self />
+            <scheme>blob:</scheme>
+        </policy>
+
+    </policies>
+</csp>

@@ -1,0 +1,180 @@
+# Installation Guide
+
+**HK2 CSP Whitelisting for Magento 2**
+
+This document explains how to install and activate the **HK2 CSP Whitelisting** extension, including its required dependency **HK2 Core**. HK2 Core is a **required dependency** for all other HK2 Magento 2 extensions and must be installed **before** any additional HK2 modules.
+
+---
+
+## ✅ System Requirements
+
+Before installation, ensure your system meets the following requirements:
+
+* Magento Open Source / Adobe Commerce **2.4.x**
+* PHP **8.1 or higher**
+* Composer **2.x**
+* Command-line access to the Magento root directory
+
+> ⚠ Magento 2.3.x is end-of-life and not supported.
+
+---
+
+## Required Dependency
+
+This module depends on **HK2 Core**.
+
+* Package name: `hk2/core`
+* Namespace: `HK2_Core`
+* Required for both **Composer** and **manual** installations
+
+---
+
+## 📦 Installation Methods
+
+### Option 1: Composer Installation (Recommended)
+
+Composer will automatically install **HK2 Core** as a dependency.
+
+From the Magento root directory, run:
+
+```bash
+composer require hk2/cspwhitelisting
+```
+
+After installation, proceed to Enable the Module.
+
+---
+
+### Option 2: Manual Installation
+
+Use this method only if Composer is not available. You can install it from any one from below urls.
+
+---
+
+#### Step 1: Install HK2 Core
+
+* **Download HK2 Core** - <https://github.com/basantmandal/magento2-hk2-cspwhitelisting/archive/refs/tags/1.0.0.zip>
+  
+Ensure the following directory exists:
+
+```
+app/code/HK2/Core
+```
+
+If not, copy the **HK2 Core** module into this location.
+
+#### Step 2: Install HK2 CspWhitelisting
+
+* **Download HK2 CspWhitelisting** - <https://github.com/basantmandal/magento2-CspWhitelisting/archive/refs/tags/3.0.0.zip>
+  
+Create the module directory:
+
+```bash
+app/code/HK2/CspWhitelisting
+```
+
+Copy all module files into this directory.
+
+---
+
+## Enable the Module
+
+After installing both modules, run the following commands from the Magento root:
+
+```bash
+php bin/magento module:enable HK2_Core HK2_CspWhitelisting
+php bin/magento setup:upgrade
+php bin/magento cache:flush
+```
+
+---
+
+### Production Mode (Optional)
+
+If your store is in production mode, also run:
+
+```bash
+php bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy
+```
+
+---
+
+## 🔎 Verify Installation
+
+1. Log in to the Magento Admin Panel.
+
+2. Navigate to:
+
+   **Stores → Configuration → HK2 → CSP Whitelisting**
+
+3. Enable the extension and select the desired Bootstrap version.
+
+4. Save configuration and refresh cache if prompted.
+
+---
+
+## 🛠️ Troubleshooting
+
+If the extension does not appear or Bootstrap assets are not loading:
+
+1. Confirm both modules are enabled:
+
+   ```bash
+   php bin/magento module:status HK2_Core HK2_CspWhitelisting
+   ```
+
+2. Flush cache:
+
+   ```bash
+   php bin/magento cache:flush
+   ```
+
+3. Check `var/log/system.log` and browser console for errors.
+
+4. Ensure Content Security Policy (CSP) is not blocking CDN assets.
+
+---
+
+## ❌ Uninstallation
+
+### Composer
+
+```bash
+composer remove hk2/CspWhitelisting
+php bin/magento setup:upgrade
+php bin/magento cache:flush
+```
+
+### Manual
+
+1. Disable the module:
+
+   ```bash
+   php bin/magento module:disable HK2_CspWhitelisting
+   ```
+
+2. Remove the directory:
+
+   ```bash
+   app/code/HK2/CspWhitelisting
+   ```
+
+3. Run:
+
+   ```bash
+   php bin/magento setup:upgrade
+   php bin/magento cache:flush
+   ```
+
+---
+
+## 📫 Support
+
+For issues related to installation:
+
+* Email: [support@basantmandal.in](mailto:support@basantmandal.in)
+* Website: [https://www.basantmandal.in](https://www.basantmandal.in)
+* LinkedIn: [https://www.linkedin.com/in/basantmandal](https://www.linkedin.com/in/basantmandal)
+
+---

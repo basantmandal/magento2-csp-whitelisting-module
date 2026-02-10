@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="HK2_CspWhitelisting::settings" title="CSP Whitelisting" module="HK2_CspWhitelisting" sortOrder="40" action="adminhtml/system_config/edit/section/hk2_cspWhitelisting_section1" resource="HK2_CspWhitelisting::config" parent="HK2::root" />
+    </menu>
+</config>
