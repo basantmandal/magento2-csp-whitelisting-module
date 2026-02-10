@@ -38,7 +38,7 @@ Composer will automatically install **HK2 Core** as a dependency.
 From the Magento root directory, run:
 
 ```bash
-composer require hk2/cspwhitelisting
+composer require hk2/CspWhitelisting
 ```
 
 After installation, proceed to Enable the Module.
@@ -53,7 +53,7 @@ Use this method only if Composer is not available. You can install it from any o
 
 #### Step 1: Install HK2 Core
 
-* **Download HK2 Core** - <https://github.com/basantmandal/magento2-hk2-cspwhitelisting/archive/refs/tags/1.0.0.zip>
+* **Download HK2 Core** - <https://github.com/basantmandal/magento2-hk2-core/archive/refs/tags/1.0.0.zip>
   
 Ensure the following directory exists:
 
@@ -63,14 +63,14 @@ app/code/HK2/Core
 
 If not, copy the **HK2 Core** module into this location.
 
-#### Step 2: Install HK2 CspWhitelisting
+#### Step 2: Install HK2 CSP Whitelisting
 
-* **Download HK2 CspWhitelisting** - <https://github.com/basantmandal/magento2-CspWhitelisting/archive/refs/tags/3.0.0.zip>
+* **Download HK2 CSP Whitelisting** - <<https://github.com/basantmandal/magento2-CSP> Whitelisting/archive/refs/tags/3.0.0.zip>
   
 Create the module directory:
 
 ```bash
-app/code/HK2/CspWhitelisting
+app/code/hk2/CspWhitelisting
 ```
 
 Copy all module files into this directory.
@@ -114,6 +114,26 @@ php bin/magento setup:static-content:deploy
 
 ---
 
+## Demo Pages (Optional Verification)
+
+The module provides demo routes for testing:
+
+**Bootstrap 5**
+
+```
+https://yourstore.com/bootstrap5demo/demo/index/version/5
+```
+
+**Bootstrap 4**
+
+```
+https://yourstore.com/bootstrap5demo/demo/index/version/4
+```
+
+> Demo routes are intended for validation and can be disabled in production environments.
+
+---
+
 ## 🛠️ Troubleshooting
 
 If the extension does not appear or Bootstrap assets are not loading:
@@ -121,7 +141,7 @@ If the extension does not appear or Bootstrap assets are not loading:
 1. Confirm both modules are enabled:
 
    ```bash
-   php bin/magento module:status HK2_Core HK2_CspWhitelisting
+   php bin/magento module:status HK2_Core HK2_CSP Whitelisting
    ```
 
 2. Flush cache:
@@ -151,13 +171,13 @@ php bin/magento cache:flush
 1. Disable the module:
 
    ```bash
-   php bin/magento module:disable HK2_CspWhitelisting
+   php bin/magento module:disable HK2_CSP Whitelisting
    ```
 
 2. Remove the directory:
 
    ```bash
-   app/code/HK2/CspWhitelisting
+   app/code/hk2/CspWhitelisting
    ```
 
 3. Run:
