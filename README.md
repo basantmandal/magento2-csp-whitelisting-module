@@ -1,41 +1,83 @@
 # HK2 CSP Whitelisting for Magento 2
 
-## Description
+<div align="center">
 
-**HK2 CSP Whitelisting** is a Magento 2 extension that allows store administrators to manage **Content Security Policy (CSP) whitelisted URLs** for their storefront.  
+![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
+[![Website](https://img.shields.io/badge/website-000?style=for-the-badge)](https://www.basantmandal.in/)
+[![LinkedIn](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge\&logo=linkedin)](https://www.linkedin.com/in/basantmandal/)
 
-The module provides an admin interface to **add, remove, or reset** CSP URLs for policies such as `script-src`, `style-src`, `img-src`, `connect-src`, `font-src`, and `frame-src`.  
-All changes are applied **without modifying theme files** and are fully compatible with **Magento 2.4.x CSP enforcement**.
+</div>
+
+---
+
+## Overview
+
+**HK2 CSP Whitelisting** is a Magento 2 extension that provides a **centralized, admin-managed interface** to configure
+and maintain **Content Security Policy (CSP) whitelists** without editing XML files or touching core code.
+
+The module is designed for:
+
+* Managing CSP directives from Admin UI
+* Safely allowing third-party scripts, styles, and assets
+* Debugging CSP violations during development
+* Maintaining Magento 2.4.x CSP compliance
+
+The extension works **alongside Magento’s native CSP system**, automatically merging admin-defined values with
+`csp_whitelist.xml`.
+
+> ⚠ **Important:**
+> For manual installation, the **HK2 Core** package (`hk2/core`) must be installed first.
 
 ---
 
 ## Key Features
 
-* **Admin Configuration**
-  Configure CSP policies directly from the Magento Admin Panel without touching code.
+* **Admin-Managed CSP Directives**  
+  Configure and manage CSP policies directly from the Magento Admin Panel — no XML or code changes required.
 
-* **Add / Remove URLs**
-  Easily manage whitelisted URLs for multiple CSP policies.
+* **Supported CSP Policies**  
+  Manage commonly used CSP directives including:
+    * `script-src`
+    * `style-src`
+    * `img-src`
+    * `connect-src`
+    * `font-src`
+    * `frame-src`
 
-* **Reset to Default**
-  Restore default CSP values for supported third-party services.
+* **Automatic CSP Merging**  
+  Admin-defined values are **safely merged** with existing `csp_whitelist.xml` rules, never overwritten.
 
-* **Default Policies Included**
-  Preconfigured URLs for common services like Google, Stripe, Facebook, YouTube, Tailwind CSS, jsDelivr, ContentSquare, NitroPack, and more.
+* **Multi-Scope Configuration**  
+  Fully supports all Magento configuration scopes:
+    * Default
+    * Website
+    * Store View
 
-* **CSP-Compliant**
-  All assets and policies are managed in compliance with Magento 2.4.x CSP standards.
+* **One-Click Reset to Default**  
+  Instantly clear all saved CSP values and restore fallback behavior using a dedicated admin reset button.
 
-* **Lightweight**
-  No frontend overrides, minimal performance impact, safe for production.
+* **Default Policies Included**  
+  Ships with preconfigured CSP rules for commonly used third-party services such as:
+  Google, Stripe, Facebook, YouTube, Tailwind CSS, jsDelivr, ContentSquare, NitroPack, and more.
 
----
+* **CSP-Safe & Magento-Compliant**  
+  Built in full compliance with Magento 2.4.x CSP standards:
+    * No inline JavaScript
+    * No `unsafe-inline`
+    * No `unsafe-eval`
+
+* **Magento-Native Architecture**  
+  Leverages Magento’s native CSP collectors, configuration, and caching systems for maximum compatibility.
+
+* **Lightweight & Production-Safe**  
+  No frontend overrides, no performance impact, and fully compatible with production mode.
 
 ## System Requirements
 
-* **Magento Open Source / Adobe Commerce:** 2.4.x or higher  
-* **PHP:** 7.4, 8.1, or higher  
-* **Database:** MySQL 5.7+ or compatible  
+* **Magento Open Source / Adobe Commerce:** 2.4.x
+* **PHP:** 8.1 or higher
+* **Database:** MySQL 8.0 / MariaDB 10.4+
+* **Dependency:** `hk2/core` v1.0+ (required)
 
 > Magento 2.3.x is end-of-life and not supported.
 
@@ -43,136 +85,208 @@ All changes are applied **without modifying theme files** and are fully compatib
 
 ## Installation
 
-### Option 1: Composer (Recommended)
+### Composer (Recommended)
 
-Run the following command from your Magento root directory:
+From the Magento root directory:
 
 ```bash
-composer require hktech/csp-whitelisting
-````
+composer require hk2/csp-whitelisting
+```
 
-### Option 2: Manual Installation
+This automatically installs the required **HK2 Core** dependency.
 
-1. Create the directory:
+---
 
-   ```
-   app/code/Kitto/CspWhitelisting
-   ```
+### Manual Installation
 
-2. Copy the module files into the directory.
+1. Install **HK2 Core**:
+
+```bash
+app/code/HK2/Core
+```
+
+2. Create the module directory:
+
+```bash
+app/code/HK2/CspWhitelisting
+```
+
+3. Copy the module files into the directory.
 
 ---
 
 ### Enable the Module
 
-After installation, run:
+```bash
+php bin/magento module:enable HK2_CspWhitelisting
+php bin/magento setup:upgrade
+php bin/magento cache:flush
+```
+
+Optional (production mode):
 
 ```bash
-php bin/magento module:enable Kitto_CspWhitelisting
-php bin/magento setup:upgrade
 php bin/magento setup:di:compile
-php bin/magento setup:static-content:deploy -f
-php bin/magento cache:clean
+php bin/magento setup:static-content:deploy
 ```
 
 ---
 
 ## Configuration
 
-1. Log in to the Magento Admin Panel.
-2. Navigate to **Stores → Configuration → HK2 → CSP Whitelisting**.
+Navigate to:
 
-### Configuration Options
+**Stores → Configuration → HK2 → CSP Whitelisting**
 
-| Setting              | Description                                                                   |
-| -------------------- | ----------------------------------------------------------------------------- |
-| **Enable Module**    | Toggle to enable or disable CSP management                                    |
-| **CSP Policies**     | Add or remove whitelisted URLs for `script-src`, `style-src`, `img-src`, etc. |
-| **Reset to Default** | Restore all policies to the default predefined values                         |
+### Available Options
 
----
-
-## Usage
-
-### Managing CSP Policies
-
-1. Add new URLs to any supported CSP policy.
-2. Remove unnecessary URLs.
-3. Use **Reset to Default** to restore preconfigured CSP URLs.
-
-> All changes are applied immediately and comply with Magento’s CSP framework.
+| Setting          | Description                                       |
+|------------------|---------------------------------------------------|
+| Script Src URLs  | Comma-separated list for `script-src` directive   |
+| Style Src URLs   | Comma-separated list for `style-src` directive    |
+| Image Src URLs   | Comma-separated list for `img-src` directive      |
+| Connect Src URLs | Comma-separated list for `connect-src` directive  |
+| Font Src URLs    | Comma-separated list for `font-src` directive     |
+| Frame Src URLs   | Comma-separated list for `frame-src` directive    |
+| Reset CSP Button | Clears all saved CSP values and restores defaults |
 
 ---
 
-### Verification
+## Reset CSP Behavior
 
-After configuration:
+The **Reset CSP** button:
 
-* Check browser console for CSP warnings or blocked resources.
-* Add a test URL to ensure it is allowed in the specified policy.
-* Reset policies and verify default URLs are restored.
+* Clears all saved values across **all scopes**
+* Restores fallback behavior from `csp_whitelist.xml`
+* Immediately clears admin UI textareas
+* Re-initializes Magento config cache safely
+
+This follows Magento’s native **“Reset to Default”** behavior.
+
+---
+
+## CSP Merging Logic
+
+This module **does not override** Magento CSP rules.
+
+Final CSP header is composed of:
+
+1. Core Magento CSP rules
+2. Values from `csp_whitelist.xml`
+3. Admin-configured values (merged per directive)
+
+This ensures:
+
+* Maximum compatibility
+* Upgrade safety
+* Predictable CSP behavior
+
+---
+
+## Testing & Verification
+
+### Frontend Testing
+
+You can verify CSP behavior using:
+
+* Browser DevTools → **Network → Response Headers**
+* Browser Console CSP violation warnings
+* Test scripts/styles from allowed and blocked sources
+
+### Sample Test Page
+
+Create a CMS page and try loading:
+
+* Allowed external JS (should load)
+* Disallowed external JS (should be blocked)
 
 ---
 
 ## Content Security Policy (CSP)
 
-This module **does not introduce inline JavaScript**.
-A `csp_whitelist.xml` file is included with default policies, ensuring compatibility with Magento 2.4.x CSP enforcement.
-You can safely add third-party service URLs without modifying core files.
+This extension is fully compatible with Magento 2.4.x CSP system.
+
+The module **does not use**:
+
+* Inline JavaScript
+* `unsafe-inline`
+* `unsafe-eval`
+
+### Supported Directives
+
+* `script-src`
+* `style-src`
+* `img-src`
+* `connect-src`
+* `font-src`
+* `frame-src`
+
+All values are validated and merged safely.
 
 ---
 
-## Privacy
+## Privacy & Data Usage
 
-This extension **does not collect personal or store data**.
-All configuration is stored locally in Magento’s `core_config_data` table.
+* No personal data is collected
+* No tracking or analytics
+* No background requests
+* External requests only occur if explicitly whitelisted
 
----
-
-## Troubleshooting
-
-* **CSP changes not applied:**
-
-  * Ensure the module is enabled (`php bin/magento module:status`)
-  * Flush cache: `php bin/magento cache:flush`
-  * Verify CSP URLs in Admin → Stores → Configuration → HK2 → CSP Whitelisting
-
-* **Reset not working:**
-
-  * Ensure write permissions for `core_config_data`
-  * Check browser console for CSP warnings
+This module is **GDPR-safe by design**.
 
 ---
 
 ## Compatibility & Performance
 
-* Fully compatible with **Magento 2.4.x** frontend architecture
-* Lightweight and safe for production
-* No theme overrides
+* Fully compatible with Magento 2.4.x
+* Safe for production mode
 * Compatible with static content deployment
-* CSP-compliant and secure
+* No performance impact on frontend or admin
 
 ---
 
-## Support
+## Known Limitations
 
-For bug reports or feature requests, contact **HK2 support** or use the module repository issue tracker via Magento Marketplace.
+* Does not modify core CSP logic
+* Does not auto-detect CSP violations
+* Inline scripts must still be refactored to comply with CSP
+
+---
+
+## Support & Contribution
+
+Contributions are welcome:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit and push your changes
+4. Open a pull request
+
+Support availability may vary.
+
+---
+
+## Disclaimer
+
+This extension is provided **as-is**, without warranty of any kind.
+The author is not liable for damages resulting from the use of this module.
 
 ---
 
 ## License
 
-This extension is licensed under **OSL-3.0**, fully compliant with Magento Marketplace requirements.
+**Open Software License (OSL-3.0)**
+[https://opensource.org/licenses/OSL-3.0](https://opensource.org/licenses/OSL-3.0)
 
 ---
 
-### ✔ Marketplace Readiness Summary
+## Author
 
-* Magento 2.4.x compatible
-* CSP-compliant
-* No inline JavaScript
-* Composer-installable
-* Admin-configurable
-* Lightweight and production-safe
+**Basant Mandal**
+HK2 – Hash Tag Kitto
+
+* Website: [https://www.basantmandal.in](https://www.basantmandal.in)
+* LinkedIn: [https://www.linkedin.com/in/basantmandal](https://www.linkedin.com/in/basantmandal)
+* Email: [support@basantmandal.in](mailto:support@basantmandal.in)
 
 ---
