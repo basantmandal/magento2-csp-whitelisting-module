@@ -1,170 +1,165 @@
 # HK2 CSP Whitelisting
 
-HK2 CSP Whitelisting for Magento version 2.3.5 or above includes major URLs such as Cloudflare, Google Analytics, Google Fonts, Fontawesome, AddThis, Googleapis, Facebook Graph, Pinterest, Vimeo, Twitter, TrustPilot, NitroPack/NitroCDN, jsdelivr.net, Tailwind CSS CDN, and ContentSquare
+![Version](https://img.shields.io/badge/version-3.0.0-blue?style=flat-square)
+![License](https://img.shields.io/badge/license-OSL--3.0-green?style=flat-square)
+![Magento](https://img.shields.io/badge/Magento-2.4.4--2.4.9-f97316?style=flat-square&logo=magento&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.1%20%7C%7C%208.2%20%7C%7C%208.3%20%7C%7C%208.4-7c3aed?style=flat-square&logo=php&logoColor=white)
+[![Downloads](https://img.shields.io/packagist/dt/hk2/csp?style=flat-square)](https://packagist.org/packages/hk2/csp)
 
-One can disable Magento 2 CSP. However, Disabling results in more possibilities of attacks on the Magento store. (CSP) are a powerful tool to mitigate against Cross Site Scripting (XSS) and related attacks.
+## Overview
 
-**Please Note** :- This module Whitelist CSP in Magento Store Frontend.
+HK2 CSP is a Magento 2 extension that enables administrators to manage Content Security Policy (CSP) whitelists dynamically. In addition to a robust set of pre-configured whitelist hosts for third-party scripts, styles, fonts, images, frames, and connections, it provides an admin interface to add custom domains without touching configuration files.
 
-## 💰 Account & Pricing
+## 🎯 Use Cases
 
-This is a Open Source - Free to use Module. No charge or any fee is there to use it.
+- **Third-Party Integrations**: Safe whitelisting for Google Analytics, Stripe, Facebook, and other standard services.
+- **Admin Management**: Direct, safe administrative management of CSP hosts dynamically.
 
-## 🧐 Features
+## 🚀 Features
 
-1. Fully Customizable as per your Store needs. Check How to Configure Section for more details.
-2. Simple, Open Source & Free
-3. CSP is not disabled rather specific listed urls are whitelisted, keeping your Magento Store Safe.
+- 🛡 Declares standard CSP policy parameters in `etc/csp.xml`.
+- 📦 Out-of-the-box whitelists for popular services (Google, Facebook, Stripe, Hotjar, Sentry, etc.).
+- ⚙️ Dynamic admin configurations for directive hosts (`script-src`, `style-src`, `img-src`, `connect-src`, `font-src`, `frame-src`).
+- 🔌 Backend validation plugin preventing invalid hosts or header injections.
+- 🔄 One-click dynamic "Reset CSP to Defaults" button via Ajax backend redirect.
 
-## Some of the URL Whitelisted
+## 🏗 Architecture
 
-01. Addthis (moatads is a part of Addthis)
-02. Cloudflare
-03. Facebook Graph
-04. Fontawesome
-05. Google Analytics, Google Fonts, Gstatic, Google Tag Manager & Googleapis
-06. Pinterest
-07. Trust Pilot
-08. Twitter
-09. Vimeo
-10. ContentSqaure
-11. Nitropack/NitroCDN
-12. Tailwind
-13. jsdelivr.net
+- **Plugin**: `HK2\Csp\Plugin\PolicyListPlugin` intercepts `Magento\Csp\Model\Policy\PolicyList::getAllPolicies` to dynamically merge administrative hosts.
+- **Controller**: `HK2\Csp\Controller\Adminhtml\Reset\ResetConfig` handles configuration wipe operations.
 
-## 🚀 Supported Version
+## 🧩 Magento Components
 
-- Magento v2.3.5, 2.4.x
+### Blocks
 
-## How to install
+- `HK2\Csp\Block\Adminhtml\System\Config\ResetButton`
 
-### Method 1: Install ready-to-paste package
+### Plugins
 
-[Download Link - HK2 - CSP - (https://github.com/basantmandal/HK2-CSP_Whitelisting-Magento-Module/releases)](https://github.com/basantmandal/HK2-CSP_Whitelisting-Magento-Module)
+- `HK2\Csp\Plugin\PolicyListPlugin` on `Magento\Csp\Model\Policy\PolicyList`
 
-Download the zip package and unzip it in app/code folder.
+### Controllers
 
-## Enable Extension
+- `HK2\Csp\Controller\Adminhtml\Reset\ResetConfig`
 
-```bash
-php bin/magento module:enable HK2_Csp
+## 📦 Requirements
+
+- **Magento version**: 2.4.4 - 2.4.9
+- **PHP requirements**: 8.1 || 8.2 || 8.3 || 8.4
+- **Required Extension**: `HK2_Core`
+
+## ⚙️ Installation
+
+1. `composer require hk2/csp`
+2. `bin/magento module:enable HK2_Csp`
+3. `bin/magento setup:upgrade`
+4. `bin/magento setup:di:compile`
+5. `bin/magento cache:flush`
+
+## 🔧 Configuration
+
+Configure settings under **Stores > Configuration > HK2 > CSP Whitelisting**:
+
+| Field | Description |
+|-------|-------------|
+| **Script Src URLs** | Comma-separated list of script host domains (e.g. `*.example.com`). |
+| **Style Src URLs** | Comma-separated list of style host domains. |
+| **Image Src URLs** | Comma-separated list of image host domains. |
+| **Connect Src URLs** | Comma-separated list of connect/API host domains. |
+| **Font Src URLs** | Comma-separated list of font host domains. |
+| **Frame Src URLs** | Comma-separated list of frame/iframe host domains. |
+| **Reset CSP** | Button to clear all scopes and restore default whitelists. |
+
+## Usage
+
+Navigate to **Stores > Configuration > HK2 > CSP Whitelisting**, populate domains matching your external integrations, and save. Run `bin/magento cache:flush` to apply.
+
+## 🗄 Database Changes
+
+Not Applicable
+
+## 📂 Module Structure
+
+```text
+Block/
+└── Adminhtml/
+    └── System/
+        └── Config/
+            └── ResetButton.php
+Controller/
+└── Adminhtml/
+    └── Reset/
+        └── ResetConfig.php
+Plugin/
+└── PolicyListPlugin.php
+etc/
+├── adminhtml/
+│   ├── menu.xml
+│   ├── routes.xml
+│   └── system.xml
+├── acl.xml
+├── config.xml
+├── csp.xml
+├── csp_whitelist.xml
+├── di.xml
+└── module.xml
+view/
+└── adminhtml/
+    └── templates/
+        └── system/
+            └── config/
+                └── reset_button.phtml
 ```
 
-```bash
-php bin/magento setup:upgrade
-```
+## 📈 Performance Considerations
 
-```bash
-php bin/magento cache:flush
-```
+The policies list is cached inside Magento's standard configuration cache, preventing database queries or regex calculations on standard page loads.
 
-## Disable Extension
+## 🔐 Security Considerations
 
-```bash
-php bin/magento module:disable HK2_Csp
-```
+- **Input Validation**: `isValidCspHost` prevents semicolons, commas, and white spaces in custom values, protecting the headers against header splitting or policy injection attacks.
 
-```bash
-php bin/magentosetup:upgrade
-```
+## Compatibility
 
-```bash
-php bin/magento cache:flush
-```
+Reference: [docs/compatibility.md](docs/compatibility.md)
 
-### Method 2: Install via composer (Recommend)
+| Platform | Supported Versions |
+|----------|-------------------|
+| Magento  | 2.4.4 - 2.4.9     |
+| PHP      | 8.1, 8.2, 8.3, 8.4 |
 
-Run the following command in Magento 2 root folder
+## 🛠 Troubleshooting
 
-```bash
-composer require hk2/csp
-```
+### Dynamic values not appearing in CSP header
 
-```bash
-php bin/magento setup:upgrade
-```
+Verify you have flushed the configuration cache after making changes: `bin/magento cache:flush`.
 
-```bash
-php bin/magento setup:static-content:deploy
-```
+## 🤝 Contributing
 
-## How to Configure?
+Contributions are welcome! If you'd like to improve the installer:
 
-You can add a domain to the whitelist for a policy (like script-src, style-src, font-src and others) by updating the **csp_whitelist.xml present** in **/app/code/HK2/Csp/etc/csp_whitelist.xml** . Please only create rules for URLs that you have verified as safe & safe for your Magento Store. Ensure that you use a unique "id" (e.g. the URL) for each entry within its group. Below screenshot describes Policy Name & Description.
+- ⭐ **Star this repository** (Helps others find it!)
+- 🍴 Fork the project
+- 🐛 Report bugs
+- 💡 Suggest new features
+- 🤝 Contribute improvements
 
-![screenshot1](docs/images/screenshot1.png)
+Every ⭐ helps increase the visibility of the project and motivates further development.
 
-## 🛠️ Maintenance mode
+## ⚖️ Disclaimer
 
-You may want to enable the maintenance mode when installing or updating the module, especially when working on a production website. To do so, run the two commands below before and after running the other setup commands:
+The author provides this installation script "as is" without any warranties. Users are responsible for ensuring that running this script complies with their internal security and software requirements.
 
-### Enable Maintenance Mode
+## 🤝 Support
 
-```bash
-php bin/magento maintenance:enable
-```
+For bug reports, feature requests, and general support:
 
-### Disable Maintenance Mode
+- **Author**: Basant Mandal
+- **Email**: <support@basantmandal.in>
+- **Website**: <https://www.basantmandal.in>
 
-```bash
-php bin/magento maintenance:disable
-```
+## License
 
-## 🤫 Privacy
+This project is licensed under the OSL 3.0 License. See the [LICENSE.txt](LICENSE.txt) file for details.
 
-This extension does not read, change, store, or transmit any of your personal data (e.g., logins, passwords, messages, contacts) from any of the sites or your computer in absolutely any form.
-
-## 📫 Support
-
-For support or any bug report or changes mail me at - <support@hashtagkitto.co.in>
-
-## 🐞 Bug Report
-
-Please open an [issue](https://github.com/basantmandal/HK2-CSP_Whitelisting-Magento-Module/issues) on GitHub.
-
-When filing a bug remember that the better written the bug is, the more likely it is to be fixed.
-
-You can also reach us at <support@hashtagkitto.co.in>
-
-## 🍰 Contribution Guidelines 💖
-
-Contributions are welcome! If you’d like to contribute to this project:
-
-- Fork the repository.
-- Create a new branch (git checkout -b feature/your-feature-name).
-- Make your changes and commit them (git commit -am 'Add new feature').
-- Push to the branch (git push origin feature/your-feature-name).
-- Open a pull request.
-
-**Please Note** :- I may be a bit delayed in responding or slow in responding due to low amount of free time. I apologize for the inconvenience and I appreciate your patience
-
-## 🤝 Consent
-
-By using any Product/Module/Application from Basant Mandal A.K.A (HK2 - Hash Tag Kitto), you hereby consent to our disclaimer and agree to its terms.
-
-## 📢 Disclaimer
-
-> **Basant Mandal (HK2 - Hash Tag Kitto)** does not make any warranties about the completeness, reliability and accuracy of this image or its related products. Any action you take upon the information you find here is strictly at your own risk.
-
-> **Basant Mandal (HK2 - Hash Tag Kitto)** will not be liable for any losses and/or damages in connection with the use of our website.
-
-## 💖Like my work? Help Us
-
-Please rate my project or give some stars at [https://github.com/basantmandal/HK2-CSP_Whitelisting-Magento-Module](https://github.com/basantmandal/HK2-CSP_Whitelisting-Magento-Module). You can also contribute to make my Open Source Contribution more frequent and help others - [https://www.buymeacoffee.com/basantmandal](https://www.buymeacoffee.com/basantmandal) or [https://www.basantmandal.in/buymecoffee](https://www.basantmandal.in/buymecoffee)
-
-## 📫 Feedback
-
-If you have any feedback, please reach out to us at <support@hashtagkitto.co.in>
-
-## 🔗 Links:
-
-Feel free to reach me through the below handles if you'd like to contact me.
-
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.basantmandal.in/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/basantmandal/)
-
-## 📜 License:
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+---
