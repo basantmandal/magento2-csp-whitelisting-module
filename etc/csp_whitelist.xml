@@ -1,88 +1,136 @@
 <?xml version="1.0"?>
-<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
     <policies>
+
+        <!-- ================= SCRIPT ================= -->
         <policy id="script-src">
             <values>
-                <value id="addthis.com" type="host">*.addthis.com</value>
-                <value id="ajaxgoogleapis" type="host">*.googleapis.com</value>
+                <value id="addthis" type="host">*.addthis.com</value>
+                <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="google" type="host">*.google.com</value>
-                <value id="google-analytics" type="host">*.google-analytics.com</value>
-                <value id="googletagmanager.com" type="host">googletagmanager.com</value>
-                <value id="graph-facebook" type="host">graph.facebook.com</value>
+                <value id="google_analytics" type="host">*.google-analytics.com</value>
+                <value id="googletagmanager" type="host">www.googletagmanager.com</value>
+                <value id="facebook_graph" type="host">graph.facebook.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
-                <value id="addthis.moatads.com" type="host">*.moatads.com</value>
                 <value id="trustpilot" type="host">*.trustpilot.com</value>
                 <value id="vimeo" type="host">*.vimeo.com</value>
-                <value id="widgets-pinterest" type="host">widgets.pinterest.com</value>
-                <value id="js-contentsqaure-app" type="host">*.contentsquare.com</value>
-                <value id="js-contentsquare" type="host">*.contentsquare.net</value>
-                <value id="cdn-tailwindcss-script" type="host">cdn.tailwindcss.com</value>
-                <value id="cdnjs_jsdelivr_script" type="host">cdn.jsdelivr.net</value>
+                <value id="pinterest" type="host">widgets.pinterest.com</value>
+                <value id="contentsquare_net" type="host">*.contentsquare.net</value>
+                <value id="contentsquare_com" type="host">*.contentsquare.com</value>
+                <value id="tailwindcdn" type="host">cdn.tailwindcss.com</value>
+                <value id="jsdelivr" type="host">cdn.jsdelivr.net</value>
+                <value id="facebook_connect" type="host">connect.facebook.net</value>
+                <value id="stripe_js" type="host">js.stripe.com</value>
+                <value id="youtube" type="host">*.youtube.com</value>
+                <value id="tiktok" type="host">*.tiktok.com</value>
+                <value id="linkedin" type="host">platform.linkedin.com</value>
+                <value id="hotjar" type="host">*.hotjar.com</value>
+                <value id="klaviyo" type="host">*.klaviyo.com</value>
             </values>
         </policy>
+
+        <!-- ================= STYLE ================= -->
         <policy id="style-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
-                <value id="twitter.com" type="host">*.twitter.com</value>
-                <value id="cdn-tailwindcss-style" type="host">cdn.tailwindcss.com</value>
-                <value id="nitropack_io" type="host">nitropack.io</value>
-                <value id="cdnjs_cloudflare" type="host">cdnjs.cloudflare.com</value>
-                <value id="nitropack_cdn" type="host">*.nitrocdn.com</value>
-                <value id="cdnjs_jsdelivr_script" type="host">cdn.jsdelivr.net</value>
+                <value id="tailwindcdn" type="host">cdn.tailwindcss.com</value>
+                <value id="cdnjs" type="host">cdnjs.cloudflare.com</value>
+                <value id="jsdelivr" type="host">cdn.jsdelivr.net</value>
+                <value id="fontsource" type="host">cdn.fontsource.org</value>
+                <value id="bootstrap" type="host">stackpath.bootstrapcdn.com</value>
             </values>
         </policy>
+
+        <!-- ================= IMAGE ================= -->
         <policy id="img-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
-                <value id="data" type="host">data:</value>
-                <value id="google-analytics" type="host">*.google-analytics.com</value>
+                <value id="google_analytics" type="host">*.google-analytics.com</value>
                 <value id="paypal" type="host">*.paypal.com</value>
-                <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="twitter" type="host">*.twitter.com</value>
                 <value id="vimeocdn" type="host">*.vimeocdn.com</value>
-                <value id="js-contentsquare" type="host">*.contentsquare.net</value>
-                <value id="nitropack_io" type="host">nitropack.io</value>
-                <value id="nitropack_cdn" type="host">*.nitrocdn.com</value>
+                <value id="nitrocdn" type="host">*.nitrocdn.com</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="instagram" type="host">*.instagram.com</value>
+                <value id="youtube" type="host">*.youtube.com</value>
+                <value id="ytimg" type="host">*.ytimg.com</value>
+                <value id="gravatar" type="host">*.gravatar.com</value>
+                <value id="googleusercontent" type="host">*.googleusercontent.com</value>
+                <value id="klaviyo" type="host">*.klaviyo.com</value>
+                <value id="tiktok" type="host">*.tiktok.com</value>
+                <value id="linkedin" type="host">*.linkedin.com</value>
             </values>
         </policy>
+
+        <!-- ================= CONNECT ================= -->
         <policy id="connect-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="paypal" type="host">*.paypal.com</value>
-                <value id="twitter.com" type="host">*.twitter.com</value>
-                <value id="nr-contentsuqare" type="host">*.contentsquare.net</value>
-                <value id="google-analytics.com" type="host">*.google-analytics.com</value>
-                <value id="nitropack_cdn" type="host">*.nitrocdn.com</value>
-                <value id="nitropack_io" type="host">nitropack.io</value>
+                <value id="google_analytics" type="host">*.google-analytics.com</value>
+                <value id="nitrocdn" type="host">*.nitrocdn.com</value>
+                <value id="facebook_graph" type="host">graph.facebook.com</value>
+                <value id="facebook_connect" type="host">connect.facebook.net</value>
+                <value id="google_ads" type="host">googleads.g.doubleclick.net</value>
+                <value id="stripe_api" type="host">api.stripe.com</value>
+                <value id="vimeo_api" type="host">api.vimeo.com</value>
+                <value id="trustpilot_api" type="host">api.trustpilot.com</value>
+                <value id="klaviyo" type="host">*.klaviyo.com</value>
+                <value id="hotjar" type="host">*.hotjar.com</value>
+                <value id="sentry" type="host">*.sentry.io</value>
             </values>
         </policy>
+
+        <!-- ================= FONT ================= -->
         <policy id="font-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
-                <value id="fontawesomecdn" type="host">*.bootstrapcdn.com</value>
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
-                <value id="twitter.com" type="host">*.twitter.com</value>
-                <value id="nitropack_io" type="host">nitropack.io</value>
-                <value id="nitropack_cdn" type="host">*.nitrocdn.com</value>
+                <value id="fontsource" type="host">cdn.fontsource.org</value>
             </values>
         </policy>
 
+        <!-- ================= FRAME ================= -->
         <policy id="frame-src">
             <values>
-                <value id="addthis.com" type="host">*.addthis.com</value>
-                <value id="google.com" type="host">*.google.com</value>
+                <value id="google" type="host">*.google.com</value>
                 <value id="trustpilot" type="host">*.trustpilot.com</value>
-                <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="twitter" type="host">*.twitter.com</value>
                 <value id="vimeo" type="host">*.vimeo.com</value>
-                <value id="doubleclick.net" type="host">*.doubleclick.net</value>
-                <value id="nitropack_io" type="host">nitropack.io</value>
+                <value id="doubleclick" type="host">*.doubleclick.net</value>
+                <value id="youtube" type="host">*.youtube.com</value>
+                <value id="youtube_nocookie" type="host">*.youtube-nocookie.com</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="instagram" type="host">*.instagram.com</value>
+                <value id="paypal" type="host">*.paypal.com</value>
+                <value id="klaviyo" type="host">*.klaviyo.com</value>
+                <value id="tiktok" type="host">*.tiktok.com</value>
+                <value id="linkedin" type="host">*.linkedin.com</value>
             </values>
         </policy>
+
+        <!-- ================= SAFE DEFAULTS ================= -->
+        <policy id="form-action">
+            <values>
+                <value id="paypal" type="host">*.paypal.com</value>
+                <value id="stripe" type="host">*.stripe.com</value>
+            </values>
+        </policy>
+
+        <policy id="media-src">
+            <values>
+                <value id="vimeo" type="host">*.vimeo.com</value>
+                <value id="youtube" type="host">*.youtube.com</value>
+            </values>
+        </policy>
+
     </policies>
 </csp_whitelist>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="hk2_csp_section1" translate="label" sortOrder="2" showInDefault="1"
+            showInWebsite="1" showInStore="1">
+            <label><![CDATA[CSP Whitelisting]]></label>
+            <tab>hk2_options_tab</tab>
+            <resource>HK2_Csp::core_config</resource>
+
+            <!-- Module Information Header -->
+            <group id="HK2_Csp_module_info" showInDefault="1" showInWebsite="0" showInStore="0"
+                sortOrder="0" translate="label">
+                <label><![CDATA[About HK2 Extensions]]></label>
+
+                <field id="HK2_Csp_module_header" type="note" sortOrder="0" showInDefault="1"
+                    showInWebsite="0" showInStore="0">
+                    <frontend_model>HK2\Core\Block\Adminhtml\System\Config\ModuleHeader</frontend_model>
+                </field>
+            </group>
+
+            <!-- Group 2 - General Settings -->
+            <group id="hk2_csp_section1_group2" translate="label" sortOrder="10" showInDefault="1"
+                showInWebsite="0" showInStore="0">
+                <label><![CDATA[General Settings]]></label>
+
+                <field id="script_src" translate="label" type="textarea" sortOrder="10"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Script Src URLs]]></label>
+                    <comment><![CDATA[Comma-separated list of script-src URLs]]></comment>
+                </field>
+
+                <field id="style_src" translate="label" type="textarea" sortOrder="20"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Style Src URLs]]></label>
+                    <comment><![CDATA[Comma-separated list of style-src URLs]]></comment>
+                </field>
+
+                <field id="img_src" translate="label" type="textarea" sortOrder="30"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Image Src URLs]]></label>
+                    <comment><![CDATA[Comma-separated list of img-src URLs]]></comment>
+                </field>
+
+                <field id="connect_src" translate="label" type="textarea" sortOrder="40"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Connect Src URLs]]></label>
+                    <comment><![CDATA[Comma-separated list of connect-src URLs]]></comment>
+                </field>
+
+                <field id="font_src" translate="label" type="textarea" sortOrder="50"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Font Src URLs]]></label>
+                    <comment><![CDATA[Comma-separated list of font-src URLs]]></comment>
+                </field>
+
+                <field id="frame_src" translate="label" type="textarea" sortOrder="60"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Frame Src URLs]]></label>
+                    <comment><![CDATA[Comma-separated list of frame-src URLs]]></comment>
+                </field>
+
+                <field id="reset_button" translate="label" type="button" sortOrder="100"
+                    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Reset CSP]]></label>
+                    <frontend_model>HK2\Csp\Block\Adminhtml\System\Config\ResetButton</frontend_model>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

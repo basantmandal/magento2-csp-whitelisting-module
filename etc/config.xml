@@ -1,20 +1,16 @@
 <?xml version="1.0"?>
-
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <csp>
-            <policies>
-                <storefront>
-                    <frame-ancestors>
-                        <inline>0</inline>
-                    </frame-ancestors>
-                </storefront>
-                <admin>
-                    <frame-ancestors>
-                        <inline>0</inline>
-                    </frame-ancestors>
-                </admin>
-            </policies>
-        </csp>
+        <hk2_csp_section1>
+            <hk2_csp_section1_group2>
+                <script_src></script_src>
+                <style_src></style_src>
+                <img_src></img_src>
+                <connect_src></connect_src>
+                <font_src></font_src>
+                <frame_src></frame_src>
+            </hk2_csp_section1_group2>
+        </hk2_csp_section1>
     </default>
 </config>
