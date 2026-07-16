@@ -1,3 +1,9 @@
+## [2.1.0](https://github.com/basantmandal/magento2-csp-whitelisting-module/compare/v2.0.0...v2.1.0) (2026-07-16)
+
+### ✨ Features
+
+* update placeholder version in bug report template ([a7c10b9](https://github.com/basantmandal/magento2-csp-whitelisting-module/commit/a7c10b95cc32d0d4942374d342d1ffa736abd65d))
+
 ## 1.0.0 (2026-07-16)
 
 ### ⚠ BREAKING CHANGES
